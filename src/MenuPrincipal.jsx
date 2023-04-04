@@ -1,6 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ComidasContext } from './context/ComidasContext';
 import { CalcularIngredientes } from './CalcularIngredientes';
+import sonido from './assets/clic.wav';
+
 
 
 export const MenuPrincipal = () => {
@@ -16,6 +18,7 @@ export const MenuPrincipal = () => {
     const [num3, setNum3] = useState();
     const [deshabilitado, setDeshabilitado] = useState();
     const [tituloOculto, setTituloOculto] = useState(false);
+    const [contenedorTra, setContenedorTra] = useState('containero');
 
 
 
@@ -41,6 +44,7 @@ export const MenuPrincipal = () => {
 
         setDeshabilitado('disabled');
         setTituloOculto(true);
+
 
 
     }
@@ -132,9 +136,13 @@ export const MenuPrincipal = () => {
 
     const test = (e) => {
         console.log(e.target.id);
+        let audio = new Audio (sonido);
+        audio.play();
+        audio.volume = 0.5;
         switch (e.target.id) {
             case '0':
                 setSeleccionado1(e.target.checked);
+                
                 break;
             case '1':
                 setSeleccionado2(e.target.checked);
@@ -148,7 +156,11 @@ export const MenuPrincipal = () => {
 
     };
 
-
+    useEffect(() => {
+        setTimeout(() => {
+          setContenedorTra('containert');
+        }, 500);
+      }, []);
 
     useEffect(() => {
         console.log(seleccionado1, seleccionado2, seleccionado3);
@@ -167,6 +179,12 @@ export const MenuPrincipal = () => {
         }
     }, [num1, num2, num3]);
 
+    // useEffect(() => {
+    //   console.log('aparece');
+    //   setContenedorTra('containert');
+    // }, [arrAzar]);
+    
+
 
 
 
@@ -174,9 +192,8 @@ export const MenuPrincipal = () => {
         <>
 
 
-            <div className="container">
+            <div className={contenedorTra}>
                 <table>
-
                     <thead>
                         <tr>
                             {
@@ -219,7 +236,18 @@ export const MenuPrincipal = () => {
                 </table>
                 <div className="button-container">
 
+                   
                     {
+                        tituloOculto ? (
+                            <button onClick={verificador}>Cambiar comida</button>
+                        ) : null
+                    }
+
+                </div> 
+               
+
+            </div>
+ {
                         !tituloOculto ? (
                             <button onClick={seleccionador}
                                     className='inicial'
@@ -228,16 +256,6 @@ export const MenuPrincipal = () => {
                             </button>
                         ) : null
                     }
-
-                    {
-                        tituloOculto ? (
-                            <button onClick={verificador}>Cambiar comida</button>
-                        ) : null
-                    }
-
-                </div>
-            </div>
-
 
                     {
                         tituloOculto ? (

@@ -1,4 +1,5 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import sonidoIngredientes from './assets/ingredientes.mp3'
 
 export const CalcularIngredientes = ({ definitivas }) => {
 
@@ -6,14 +7,19 @@ export const CalcularIngredientes = ({ definitivas }) => {
   const [cantidadesok, setCantidadesok] = useState([]);
   const [unidadesok, setUnidadesok] = useState([]);
   const [oculto2, setOculto2] = useState(false);
-  
-
+  const [contenedorTra, setContenedorTra] = useState('containero');
 
 
   const calcularIngredientes = () => {
     let ingretemp = [];
     let cantidades = [];
     let unidades = [];
+
+    let audio = new Audio (sonidoIngredientes);
+        audio.play();
+        audio.volume = 0.5;
+
+
     definitivas.map((com, i) => {
 
       Object.entries(com.ingredientes).map((ing, i) => {
@@ -61,24 +67,32 @@ export const CalcularIngredientes = ({ definitivas }) => {
     console.log(ingretemp);
     console.log(cantidadesok);
     console.log(unidades);
+
   }
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setContenedorTra('containert');
+    }, 100);
+  }, [ingredientesok]);
 
 
 
   return (
     <>
-      <div className="container">
+      <div className={contenedorTra}>
         <table>
           <thead>
             <tr>
               {
                 oculto2 ? (
                   <td>
-                Ingredientes:
-              </td>
-                ):null
+                    Ingredientes:
+                  </td>
+                ) : null
               }
-              
+
             </tr>
           </thead>
           <tbody>
@@ -98,12 +112,12 @@ export const CalcularIngredientes = ({ definitivas }) => {
               })}
           </tbody>
         </table>
-         <div className="button-container">
-        <button onClick={calcularIngredientes}>Calcular ingredientes</button>
+        <div className="button-container">
+          <button onClick={calcularIngredientes}>Calcular ingredientes</button>
+        </div>
       </div>
-      </div>
-     
-      
+
+
 
     </>
   )
