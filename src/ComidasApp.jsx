@@ -1,4 +1,5 @@
 import { MenuPrincipal } from "./MenuPrincipal"
+import imagen from './assets/comidas.png'
 
 
 
@@ -6,7 +7,7 @@ export const ComidasApp = () => {
 
   return (
     <>
-    <h1>Comidas Yan-Gus</h1>
+    <h1> <img src={imagen} alt="comidas" /></h1>
     <MenuPrincipal/>    
     </>
     

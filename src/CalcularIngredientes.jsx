@@ -5,6 +5,8 @@ export const CalcularIngredientes = ({ definitivas }) => {
   const [ingredientesok, setIngredientesok] = useState([]);
   const [cantidadesok, setCantidadesok] = useState([]);
   const [unidadesok, setUnidadesok] = useState([]);
+  const [oculto2, setOculto2] = useState(false);
+  
 
 
 
@@ -55,6 +57,7 @@ export const CalcularIngredientes = ({ definitivas }) => {
     setIngredientesok(ingretemp);
     setCantidadesok(cantidades);
     setUnidadesok(unidades);
+    setOculto2(true);
     console.log(ingretemp);
     console.log(cantidadesok);
     console.log(unidades);
@@ -64,32 +67,44 @@ export const CalcularIngredientes = ({ definitivas }) => {
 
   return (
     <>
-      <button onClick={calcularIngredientes}>Calcular ingredientes</button>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              Ingredientes:
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {ingredientesok.length > 0 &&
-            ingredientesok.map((ingre, i) => {
-              return (
-                <tr key={i}>
+      <div className="container">
+        <table>
+          <thead>
+            <tr>
+              {
+                oculto2 ? (
                   <td>
-                    {ingre.charAt(0).toUpperCase() + ingre.slice(1)}
-                  </td>
-                  <td>
-                    {cantidadesok[i]} {unidadesok[i]}
-                  </td>
-                </tr>
+                Ingredientes:
+              </td>
+                ):null
+              }
+              
+            </tr>
+          </thead>
+          <tbody>
+            {ingredientesok.length > 0 &&
+              ingredientesok.map((ingre, i) => {
+                return (
+                  <tr key={i}>
+                    <td>
+                      {ingre.charAt(0).toUpperCase() + ingre.slice(1)}
+                    </td>
+                    <td>
+                      {cantidadesok[i]} {unidadesok[i]}
+                    </td>
+                  </tr>
 
-              );
-            })}
-        </tbody>
-      </table>
+                );
+              })}
+          </tbody>
+        </table>
+         <div className="button-container">
+        <button onClick={calcularIngredientes}>Calcular ingredientes</button>
+      </div>
+      </div>
+     
+      
+
     </>
   )
 }

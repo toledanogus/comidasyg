@@ -15,6 +15,7 @@ export const MenuPrincipal = () => {
     const [num2, setNum2] = useState();
     const [num3, setNum3] = useState();
     const [deshabilitado, setDeshabilitado] = useState();
+    const [tituloOculto, setTituloOculto] = useState(false);
 
 
 
@@ -39,6 +40,7 @@ export const MenuPrincipal = () => {
         setSeleccionado3(false);
 
         setDeshabilitado('disabled');
+        setTituloOculto(true);
 
 
     }
@@ -170,51 +172,79 @@ export const MenuPrincipal = () => {
 
     return (
         <>
-            <button onClick={seleccionador}
-                disabled={deshabilitado}
-            >Presiona para elegir 3 menús
-            </button>
-            <button onClick={verificador}>Verificador</button>
 
-            <table>
 
-                <thead>
-                    <tr>
-                        <td>
-                            Comida
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
+            <div className="container">
+                <table>
+
+                    <thead>
+                        <tr>
+                            {
+                                tituloOculto ? (
+                                    <td>
+                                        Comida:
+                                    </td>
+                                ) : null
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            seleccion3.map((elemento, i) => (
+                                <React.Fragment key={elemento.nombre}>
+                                    <tr >
+                                        <td>
+                                            — {elemento.nombre}
+                                        </td>
+
+
+                                        <td>
+                                            <input
+                                                className='casillas'
+                                                type="checkbox"
+                                                name={elemento.nombre}
+                                                id={i}
+                                                // checked={`seleccionado${i}`}
+                                                // onChange={()=>test(i+1)}
+                                                onChange={test}
+                                            />
+                                        </td>
+                                    </tr>
+                                </React.Fragment>
+                            ))
+
+                        }
+                    </tbody>
+
+                </table>
+                <div className="button-container">
+
                     {
-                        seleccion3.map((elemento, i) => (
-                            <React.Fragment key={elemento.nombre}>
-                                <tr >
-                                    <td>
-                                        — {elemento.nombre}
-                                    </td>
-
-
-                                    <td>
-                                        <input
-                                            type="checkbox"
-                                            name={elemento.nombre}
-                                            id={i}
-                                            // checked={`seleccionado${i}`}
-                                            // onChange={()=>test(i+1)}
-                                            onChange={test}
-                                        />
-                                    </td>
-                                </tr>
-                            </React.Fragment>
-                        ))
-
+                        !tituloOculto ? (
+                            <button onClick={seleccionador}
+                                    className='inicial'
+                                    disabled={deshabilitado}>
+                            Presiona para elegir 3 menús
+                            </button>
+                        ) : null
                     }
-                </tbody>
 
-            </table>
+                    {
+                        tituloOculto ? (
+                            <button onClick={verificador}>Cambiar comida</button>
+                        ) : null
+                    }
 
-            <CalcularIngredientes definitivas={seleccion3} />
+                </div>
+            </div>
+
+
+                    {
+                        tituloOculto ? (
+                            <CalcularIngredientes definitivas={seleccion3} />
+                        ):null
+                    }
+            
 
         </>
     )
