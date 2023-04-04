@@ -79,7 +79,7 @@ table {
   .button-container button {
     display: block;
     margin-top: 10px;
-    height: 35px;
+    height:max-content;
   }
   
   
