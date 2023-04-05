@@ -7,7 +7,10 @@ export const ComidasApp = () => {
 
   return (
     <>
-    <h1> <img src={imagen} alt="comidas" /></h1>
+    
+      <img src={imagen} alt="comidas" />
+    
+    
     <MenuPrincipal/>    
     </>
     

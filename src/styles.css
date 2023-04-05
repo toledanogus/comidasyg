@@ -1,8 +1,12 @@
 body {
     background-color: rgba(242, 232, 223, 1);
-    display: flex;
     /* justify-content: center;
     align-items: center; */
+}
+
+img{
+    display: block;
+    margin: auto;
 }
 
 
@@ -102,6 +106,8 @@ table {
   
 
   .inicial{
+    display: block;
+    margin: auto;
     background-color: #F28585;
     border-radius: 4px;
     color: #F2E8DF;

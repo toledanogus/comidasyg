@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ComidasContext } from './context/ComidasContext';
 import { CalcularIngredientes } from './CalcularIngredientes';
-import sonido from './assets/clic.wav';
+import sonido from './assets/clic2.wav';
 
 
 

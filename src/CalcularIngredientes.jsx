@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import sonidoIngredientes from './assets/ingredientes.mp3'
+import sonidoIngredientes from './assets/ingredientes2.wav'
 
 export const CalcularIngredientes = ({ definitivas }) => {
 
